@@ -19,23 +19,23 @@ package algorithm
 import (
 	"sort"
 
-	"k8s.io/klog"
+	"k8s.io/klog/v2"
 
-	"tkestack.io/gpu-admission/pkg/device"
-	"tkestack.io/gpu-admission/pkg/util"
+	"gpu-admission/pkg/device"
+	"gpu-admission/pkg/util"
 )
 
 type exclusiveMode struct {
 	node *device.NodeInfo
 }
 
-//NewExclusiveMode returns a new exclusiveMode struct.
+// NewExclusiveMode returns a new exclusiveMode struct.
 //
-//Evaluate() of exclusiveMode returns one or more empty devices
-//which fullfil the request.
+// Evaluate() of exclusiveMode returns one or more empty devices
+// which fullfil the request.
 //
-//Exclusive mode means GPU devices are not sharing, only one
-//application can use them.
+// Exclusive mode means GPU devices are not sharing, only one
+// application can use them.
 func NewExclusiveMode(n *device.NodeInfo) *exclusiveMode {
 	return &exclusiveMode{n}
 }
@@ -73,7 +73,7 @@ func (al *exclusiveMode) Evaluate(cores uint, _ uint) []*device.DeviceInfo {
 		return nil
 	}
 
-	if klog.V(2) {
+	if klog.V(2).Enabled() {
 		for _, dev := range devs {
 			klog.V(4).Infof("Pick up %d , cores: %d, memory: %d",
 				dev.GetID(), dev.AllocatableCores(), dev.AllocatableMemory())

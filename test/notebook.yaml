@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tf-notebook
+  labels:
+    app: tf-notebook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tf-notebook
+  template:
+    metadata:
+      labels:
+        app: tf-notebook
+    spec:
+      schedulerName: gpu-admission
+      containers:
+      - name: tf-notebook
+        image: tensorflow/tensorflow:1.4.1-gpu-py3
+        ports:
+        - containerPort: 8888
+          hostPort: 8888
+        env:
+          - name: PASSWORD               
+            value: "123456"
+        resources:
+          requests:
+            cpu: 1
+            memory: 1Gi
+            tencent.com/vcuda-core: 40
+            tencent.com/vcuda-memory: 2
+          limits:
+            cpu: 1
+            memory: 1Gi
+            tencent.com/vcuda-core: 40
+            tencent.com/vcuda-memory: 2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tf-notebook
+spec:
+  ports:
+  - port: 8888
+    targetPort: 8888
+    name: jupyter
+    nodePort: 30080
+  selector:
+    app: tf-notebook
+  type: NodePort

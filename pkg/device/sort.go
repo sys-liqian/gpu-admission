@@ -16,7 +16,7 @@
  */
 package device
 
-//LessFunc represents funcion to compare two DeviceInfo or NodeInfo
+// LessFunc represents funcion to compare two DeviceInfo or NodeInfo
 type LessFunc func(p1, p2 interface{}) bool
 
 var (

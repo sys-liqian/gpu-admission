@@ -19,7 +19,7 @@ package device
 import (
 	"fmt"
 
-	"tkestack.io/gpu-admission/pkg/util"
+	"gpu-admission/pkg/util"
 )
 
 type DeviceInfo struct {
