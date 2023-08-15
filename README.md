@@ -4,12 +4,12 @@ Fork from https://github.com/tkestack/gpu-admission
 
 Refactoring GPU admission using the scheduler framework
 
-Support kubernetes 1.23.x and later versions
+Support kubernetes 1.25.x and later versions
 
 Tested on the following kubernetes versions
 
-* kubernetes v1.23.17
 * kubernetes v1.25.12
+* kubernetes v1.26.6
 
 
 ## 1. build docker image

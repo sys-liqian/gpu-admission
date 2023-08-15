@@ -26,7 +26,7 @@ metadata:
   namespace: kube-system
 data:
   config.yaml: |-
-    apiVersion: kubescheduler.config.k8s.io/v1beta3
+    apiVersion: kubescheduler.config.k8s.io/v1
     kind: KubeSchedulerConfiguration
     leaderElection:
       leaderElect: false
@@ -58,7 +58,7 @@ spec:
       serviceAccountName: gpu-admission
       containers:
         - name: gpu-admission
-          image: localhost:5000/test/gpu-admission:1.23.17
+          image: localhost:5000/test/gpu-admission:1.25.12
           imagePullPolicy: Always
           args:
             - /gpu-admission

@@ -1,5 +1,5 @@
 REGISTRY ?= localhost:5000/test
-CI_TAG ?= 1.23.17
+CI_TAG ?= 1.25.12
 GOOS = linux
 GOARCH = amd64
 
